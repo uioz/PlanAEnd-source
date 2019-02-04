@@ -1,0 +1,27 @@
+{
+  "name": "endprojectsource",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/src/index.js",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "dev": "tsc -p ./tsconfig.json",
+    "build": "tsc -p ./tsconfig.json",
+    "test": "mocha ./dist/test/"
+  },
+  "author": "uioz (ASCll)",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.12.20",
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "typescript": "^3.2.4"
+  },
+  "dependencies": {
+    "xlsx": "^0.14.1"
+  }
+}
