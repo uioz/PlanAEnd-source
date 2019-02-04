@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "module": "commonjs",
+        "sourceMap": false,
+        "watch": true,
+        "declaration": false,
+        "lib": [
+            "es5",
+            "es6",
+            "es7"
+        ],
+        "outDir": "./dist",
+        "types": ["node"]
+    },
+    "include": [
+        "./test/*"
+    ],
+    "files": [
+        "./src/index.ts",
+    ]
+}
