@@ -59,3 +59,9 @@ typings/
 
 # next.js build output
 .next
+
+# private data
+
+*.xlsx
+*.xls
+*.csv
