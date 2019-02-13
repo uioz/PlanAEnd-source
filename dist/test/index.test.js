@@ -103,9 +103,12 @@ describe('getDefaultSheets测试', () => {
             }
         }
     };
-    const workBook1 = Object.assign({ "SheetNames": [
+    const workBook1 = {
+        "SheetNames": [
             "Sheet1"
-        ] }, baseWorkBook);
+        ],
+        ...baseWorkBook
+    };
     const workBook2 = {
         "SheetNames": [
             "sheet1"
