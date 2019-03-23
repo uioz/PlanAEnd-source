@@ -146,3 +146,14 @@ export const rowEach: CellEachInterface = (range, source, callback) => cellEachB
  * @param callback 回调函数
  */
 export const colEach: CellEachInterface = (range, source, callback) => cellEachBase(range,source,callback,false);
+
+/**
+ * 从给定的工作表中获取行数
+ * @param workSheet 工作表对象
+ */
+export const getRowLen = (workSheet: WorkSheet) => getRowNumber(sliceRange(workSheet['!ref'])[1]);
+
+/**
+ * 从给定的工作表中获取列数
+ */
+export const getColLen = (workSheet: WorkSheet) => getColNumber(sliceRange(workSheet['!ref'])[1]);
