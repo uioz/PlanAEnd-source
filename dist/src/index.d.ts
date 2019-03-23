@@ -29,3 +29,17 @@ export declare function checkSourceData(workSheet: WorkSheet): boolean;
  * @param workBook 工作簿对象
  */
 export declare function getDefaultSheets(workBook: WorkBook): WorkSheet | false;
+/**
+ * 从给定的工作表中获取含有level字符串的键
+ * 并且将这些键按照名称从小到大排序
+ * @param workSheet 工作表对象
+ */
+export declare function getLevelIndexs(workSheet: WorkSheet): any[];
+/**
+ * 转换给定的JSON格式的工作表对象将多个含有level的键剔除.
+ * 按照keys数组中的顺序添加到specialityPath数组中,在添加到JSON对象上.
+ * 这个函数不会修改原来数组中的内容,将会返回一个新的JSON格式的工作表对象.
+ * @param jsonizeWorkSheet JSON格式的工作表对象
+ * @param keys 含有level键名组成的字符串数组
+ */
+export declare function transformLevelToArray(jsonizeWorkSheet: Array<object>, keys: Array<string>): Array<object>;

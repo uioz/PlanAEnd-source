@@ -58,3 +58,12 @@ export declare const rowEach: CellEachInterface;
  * @param callback 回调函数
  */
 export declare const colEach: CellEachInterface;
+/**
+ * 从给定的工作表中获取行数
+ * @param workSheet 工作表对象
+ */
+export declare const getRowLen: (workSheet: WorkSheet) => number;
+/**
+ * 从给定的工作表中获取列数
+ */
+export declare const getColLen: (workSheet: WorkSheet) => number;

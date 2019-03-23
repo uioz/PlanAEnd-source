@@ -103,3 +103,12 @@ exports.rowEach = (range, source, callback) => cellEachBase(range, source, callb
  * @param callback 回调函数
  */
 exports.colEach = (range, source, callback) => cellEachBase(range, source, callback, false);
+/**
+ * 从给定的工作表中获取行数
+ * @param workSheet 工作表对象
+ */
+exports.getRowLen = (workSheet) => exports.getRowNumber(exports.sliceRange(workSheet['!ref'])[1]);
+/**
+ * 从给定的工作表中获取列数
+ */
+exports.getColLen = (workSheet) => exports.getColNumber(exports.sliceRange(workSheet['!ref'])[1]);
