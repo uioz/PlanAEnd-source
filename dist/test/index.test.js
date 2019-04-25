@@ -4,6 +4,108 @@ require("mocha");
 const chai_1 = require("chai");
 const index_1 = require("../src/index");
 const fs_1 = require("fs");
+describe('correctSpeciality测试', () => {
+    describe('功能测试', () => {
+        it('完全符合条件的数据格式', () => {
+            const WorkSheetArray = [
+                {
+                    level1: "xx系",
+                    level2: "xx",
+                    name: "xxxx",
+                    number: "17130102110454",
+                    score: 347,
+                    speciality: "计算机类",
+                    ss: "tj",
+                },
+                {
+                    level1: "x系",
+                    level2: "xxxx",
+                    name: "xxx",
+                    number: "xxxx",
+                    score: 300,
+                    speciality: "计算机类",
+                    ss: "bj",
+                },
+            ];
+            const result = index_1.correctSpeciality(WorkSheetArray, ['计算机类']);
+            chai_1.expect(result.length).eq(WorkSheetArray.length);
+        });
+        it('不完全符合条件的数据格式', () => {
+            const WorkSheetArray = [
+                {
+                    level1: "xx系",
+                    level2: "xx",
+                    name: "xxxx",
+                    number: "17130102110454",
+                    score: 347,
+                    speciality: "计算机类",
+                    ss: "tj",
+                },
+                {
+                    level1: "x系",
+                    level2: "xxxx",
+                    name: "xxx",
+                    number: "xxxx",
+                    score: 300,
+                    speciality: "这个类型",
+                    ss: "bj",
+                },
+            ];
+            const result = index_1.correctSpeciality(WorkSheetArray, ['计算机类']);
+            chai_1.expect(result.length).not.eq(WorkSheetArray.length).and.eq(1);
+        });
+        it('完全不符合条件的数据格式', () => {
+            const WorkSheetArray = [
+                {
+                    level1: "xx系",
+                    level2: "xx",
+                    name: "xxxx",
+                    number: "17130102110454",
+                    score: 347,
+                    speciality: "那个类型",
+                    ss: "tj",
+                },
+                {
+                    level1: "x系",
+                    level2: "xxxx",
+                    name: "xxx",
+                    number: "xxxx",
+                    score: 300,
+                    speciality: "这个类型",
+                    ss: "bj",
+                },
+            ];
+            const result = index_1.correctSpeciality(WorkSheetArray, ['计算机类']);
+            chai_1.expect(result.length).not.eq(WorkSheetArray.length).and.eq(1);
+        });
+    });
+    describe('函数式测试', () => {
+        it('不修改传入的参数', () => {
+            const WorkSheetArray = [
+                {
+                    level1: "xx系",
+                    level2: "xx",
+                    name: "xxxx",
+                    number: "17130102110454",
+                    score: 347,
+                    speciality: "计算机类",
+                    ss: "tj",
+                },
+                {
+                    level1: "x系",
+                    level2: "xxxx",
+                    name: "xxx",
+                    number: "xxxx",
+                    score: 300,
+                    speciality: "这个类型",
+                    ss: "bj",
+                },
+            ];
+            const result = index_1.correctSpeciality(WorkSheetArray, ['计算机类']);
+            chai_1.expect(WorkSheetArray).eq(WorkSheetArray);
+        });
+    });
+});
 describe('StreamReadAsync测试', () => {
     describe('读取文件测试', () => {
         it('使用异步迭代测试', () => {

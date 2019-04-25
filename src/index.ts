@@ -155,3 +155,15 @@ export function transformLevelToArray(jsonizeWorkSheet:Array<object>,keys:Array<
         return jsonizeWorkSheet.map((data)=>Object.assign({},data));
     }
 }
+
+/**
+ * 过滤符合给定专业字段的数据,
+ * 当源数据的speciality字段所含所有的数据是arrayizeWorkSheet中的一项的时候,
+ * 则通过过滤.
+ * @param arrayizeWorkSheet 数组化的工作表
+ * @param Specialities 专业字段数组
+ */
+export function correctSpeciality(arrayizeWorkSheet:Array<any>,Specialities:Array<string>):Array<any>{
+    const SpecialitiesSet = new Set(Specialities);
+    return arrayizeWorkSheet.filter(item => SpecialitiesSet.has(item.speciality));
+}

@@ -43,3 +43,11 @@ export declare function getLevelIndexs(workSheet: WorkSheet): any[];
  * @param keys 含有level键名组成的字符串数组
  */
 export declare function transformLevelToArray(jsonizeWorkSheet: Array<object>, keys: Array<string>): Array<object>;
+/**
+ * 过滤符合给定专业字段的数据,
+ * 当源数据的speciality字段所含所有的数据是arrayizeWorkSheet中的一项的时候,
+ * 则通过过滤.
+ * @param arrayizeWorkSheet 数组化的工作表
+ * @param Specialities 专业字段数组
+ */
+export declare function correctSpeciality(arrayizeWorkSheet: Array<any>, Specialities: Array<string>): Array<any>;

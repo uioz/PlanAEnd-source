@@ -1,16 +1,144 @@
 import 'mocha';
 import { expect } from 'chai';
-import { getDefaultSheets, checkSourceData,StreamReadAsync,StreamReadPro } from '../src/index';
+import { getDefaultSheets, checkSourceData, StreamReadAsync, StreamReadPro, correctSpeciality } from '../src/index';
 import { createReadStream } from 'fs'
 
-describe('StreamReadAsync测试',()=>{
+describe('correctSpeciality测试', () => {
 
-    describe('读取文件测试',()=>{
+    describe('功能测试', () => {
 
-        it('使用异步迭代测试',()=>{
+        it('完全符合条件的数据格式', () => {
 
-            return StreamReadAsync(createReadStream('./test.xlsx',{
-                autoClose:true,
+            const WorkSheetArray = [
+                {
+                    level1: "xx系",
+                    level2: "xx",
+                    name: "xxxx",
+                    number: "17130102110454",
+                    score: 347,
+                    speciality: "计算机类",
+                    ss: "tj",
+                },
+                {
+                    level1: "x系",
+                    level2: "xxxx",
+                    name: "xxx",
+                    number: "xxxx",
+                    score: 300,
+                    speciality: "计算机类",
+                    ss: "bj",
+                },
+            ]
+
+            const result = correctSpeciality(WorkSheetArray, ['计算机类']);
+
+            expect(result.length).eq(WorkSheetArray.length);
+
+        });
+
+        it('不完全符合条件的数据格式', () => {
+
+            const WorkSheetArray = [
+                {
+                    level1: "xx系",
+                    level2: "xx",
+                    name: "xxxx",
+                    number: "17130102110454",
+                    score: 347,
+                    speciality: "计算机类",
+                    ss: "tj",
+                },
+                {
+                    level1: "x系",
+                    level2: "xxxx",
+                    name: "xxx",
+                    number: "xxxx",
+                    score: 300,
+                    speciality: "这个类型",
+                    ss: "bj",
+                },
+            ]
+
+            const result = correctSpeciality(WorkSheetArray, ['计算机类']);
+
+            expect(result.length).not.eq(WorkSheetArray.length).and.eq(1);
+
+        });
+
+        it('完全不符合条件的数据格式',()=>{
+
+            const WorkSheetArray = [
+                {
+                    level1: "xx系",
+                    level2: "xx",
+                    name: "xxxx",
+                    number: "17130102110454",
+                    score: 347,
+                    speciality: "那个类型",
+                    ss: "tj",
+                },
+                {
+                    level1: "x系",
+                    level2: "xxxx",
+                    name: "xxx",
+                    number: "xxxx",
+                    score: 300,
+                    speciality: "这个类型",
+                    ss: "bj",
+                },
+            ]
+
+            const result = correctSpeciality(WorkSheetArray, ['计算机类']);
+
+            expect(result.length).not.eq(WorkSheetArray.length).and.eq(1);
+
+        });
+
+    });
+
+    describe('函数式测试',()=>{
+
+        it('不修改传入的参数',()=>{
+
+            const WorkSheetArray = [
+                {
+                    level1: "xx系",
+                    level2: "xx",
+                    name: "xxxx",
+                    number: "17130102110454",
+                    score: 347,
+                    speciality: "计算机类",
+                    ss: "tj",
+                },
+                {
+                    level1: "x系",
+                    level2: "xxxx",
+                    name: "xxx",
+                    number: "xxxx",
+                    score: 300,
+                    speciality: "这个类型",
+                    ss: "bj",
+                },
+            ]
+
+            const result = correctSpeciality(WorkSheetArray, ['计算机类']);
+
+            expect(WorkSheetArray).eq(WorkSheetArray);
+
+        });
+
+    })
+
+})
+
+describe('StreamReadAsync测试', () => {
+
+    describe('读取文件测试', () => {
+
+        it('使用异步迭代测试', () => {
+
+            return StreamReadAsync(createReadStream('./test.xlsx', {
+                autoClose: true,
             }))
 
         });
@@ -19,14 +147,14 @@ describe('StreamReadAsync测试',()=>{
 
 });
 
-describe('StreamReadPro测试',()=>{
+describe('StreamReadPro测试', () => {
 
-    describe('读取文件测试',()=>{
+    describe('读取文件测试', () => {
 
-        it('包装普通可读流为Promise',()=>{
+        it('包装普通可读流为Promise', () => {
 
-            return StreamReadPro(createReadStream('./test.xlsx',{
-                autoClose:true
+            return StreamReadPro(createReadStream('./test.xlsx', {
+                autoClose: true
             }));
 
         });
@@ -35,9 +163,9 @@ describe('StreamReadPro测试',()=>{
 
 });
 
-describe('checkSourceData测试',()=>{
+describe('checkSourceData测试', () => {
 
-    describe('功能测试',()=>{
+    describe('功能测试', () => {
 
         it('一致性测试', () => {
 
@@ -85,9 +213,9 @@ describe('checkSourceData测试',()=>{
 
     });
 
-    describe('函数式测试',()=>{
+    describe('函数式测试', () => {
 
-        it('不修改传入的参数',()=>{
+        it('不修改传入的参数', () => {
 
             const WorkSheet = {
                 "A1": {
